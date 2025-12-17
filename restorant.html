@@ -1,0 +1,1573 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Oborri Shkodran - Menu</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <style>
+    /* ====== ROOT VARIABLES ====== */
+    :root {
+      --bg: rgba(247,243,239,0.9);
+      --text: #3a2c23;
+      --muted: #6b645a;
+      --accent: #c5a880;
+      --card-bg: rgba(255,255,255,0.95);
+      --border: #d8cbb6;
+      --radius: 16px;
+      --shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    * { box-sizing: border-box; scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: 'Georgia', serif;
+      color: var(--text);
+      background-image: linear-gradient(var(--bg), var(--bg)),
+        url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1470&q=80');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      line-height: 1.5;
+    }
+
+    /* ====== NAVBAR ====== */
+    /* ====== NAVBAR ====== */
+.navbar-wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.8);
+  backdrop-filter: blur(6px);
+  border-bottom: 2px solid var(--border);
+}
+
+nav.navbar {
+  display: flex;
+  flex-direction: column; /* stack brand + scroll row */
+  align-items: center;
+  justify-content: center;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0.5rem 1rem;
+  gap: 0.4rem; /* space between brand and list */
+}
+
+.nav-brand {
+  font-weight: 700;
+  font-size: 1.3rem;
+  text-decoration: none;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.nav-brand:hover {
+  color: var(--accent);
+}
+
+/* horizontal scroll list */
+.cat-scroll {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  scrollbar-width: none;
+}
+
+.cat-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.cat-list {
+  display: inline-flex;
+  gap: 0.5rem;
+  padding-bottom: 0.4rem;
+}
+
+.cat-list a {
+  text-decoration: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 999px;
+  color: var(--text);
+  border: 1px solid transparent;
+  transition: 0.3s;
+  font-weight: 500;
+  white-space: nowrap; /* keep each link in one line */
+}
+
+.cat-list a:hover,
+.cat-list a.active {
+  background: var(--accent);
+  color: #fff;
+}
+
+    /* ====== HEADER ====== */
+    header.menu-header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-top: 100px;
+    }
+
+    .menu-logo {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      border: 3px solid var(--accent);
+      box-shadow: var(--shadow);
+      object-fit: cover;
+    }
+
+    /* ====== MAIN CONTENT ====== */
+    .container {
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 1rem;
+    }
+
+    section.category {
+      margin-top: 4rem;
+      scroll-margin-top: 100px; /* offset for navbar */
+    }
+
+    .category h2 {
+      border-bottom: 2px solid var(--accent);
+      display: inline-block;
+      padding-bottom: 0.2rem;
+      color: var(--text);
+    }
+
+    /* ====== GRID ====== */
+    .grid {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 25px;
+      width: 100%;
+      margin-top: 1rem;
+    }
+
+    /* ====== CARD ====== */
+    .card {
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      width: 80%;              /* large on PC */
+      max-width: 650px;        /* limit too large stretch */
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover { transform: scale(1.02); }
+
+    .card img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      background: #f3f4f6;
+    }
+
+    .card .meta {
+      padding: 1rem 1.2rem;
+      text-align: center;
+    }
+
+    .title {
+      font-weight: 600;
+      font-size: 1.3rem;
+      color: #3a2c23;
+      margin-bottom: 0.3rem;
+    }
+
+    .desc {
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .img-wrap {
+      position: relative;
+    }
+
+    .price-badge {
+      position: absolute;
+      right: 10px;
+      bottom: 10px;
+      padding: .4rem .7rem;
+      background: var(--accent);
+      color: #fff;
+      font-weight: bold;
+      border-radius: 999px;
+      font-size: .9rem;
+      box-shadow: var(--shadow);
+    }
+
+    /* ====== RESPONSIVE ====== */
+    @media (max-width: 768px) {
+      .menu-logo {
+        width: 130px;
+        height: 130px;
+      }
+
+      .card {
+        width: 95%;   /* almost full width on phone */
+      }
+    }
+  </style>
+</head>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const sections = document.querySelectorAll("section.category");
+  const navLinks = document.querySelectorAll(".cat-list a");
+
+  function activateLink(id) {
+    navLinks.forEach(link => {
+      link.classList.toggle("active", link.getAttribute("href") === "#" + id);
+    });
+  }
+
+  function scrollActiveLinkIntoView() {
+    const activeLink = document.querySelector(".cat-list a.active");
+    if (activeLink) {
+      activeLink.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+    }
+  }
+
+  // Detect which section is in view
+  window.addEventListener("scroll", () => {
+    let current = "";
+    sections.forEach(section => {
+      const rect = section.getBoundingClientRect();
+      if (rect.top <= 150 && rect.bottom >= 150) {
+        current = section.getAttribute("id");
+      }
+    });
+
+    if (current) {
+      activateLink(current);
+      scrollActiveLinkIntoView();
+    }
+  });
+
+  // Smooth scroll for navbar clicks
+  navLinks.forEach(link => {
+    link.addEventListener("click", e => {
+      e.preventDefault();
+      const target = document.querySelector(link.getAttribute("href"));
+      target.scrollIntoView({ behavior: "smooth" });
+      activateLink(target.id);
+      scrollActiveLinkIntoView();
+    });
+  });
+});
+</script>
+
+<body>
+  <!-- NAVBAR -->
+  <div class="navbar-wrap">
+    <nav class="navbar">
+      <a href="index.html" class="nav-brand">Oborri Shkodran</a>
+      <div class="cat-scroll">
+        <div class="cat-list">
+          <a href="#traditionaldishes">Traditional dishes</a>
+          <a href="#appetizers">Appetizers</a>
+          <a href="#sidedishes">Side dishes</a>
+          <a href="#soups">Soups</a>
+          <a href="#pasta">Pasta</a>
+          <a href="#risotto">Risotto</a>
+          <a href="#steakhouse">Steakhouse</a>
+          <a href="#grilledsteakhouse">Grilled Steakhouse</a>
+          <a href="#beeffillets">Beef fillets</a>
+          <a href="#seafoodappetizers">Seafood appetizers</a>
+          <a href="#fishinthepan">Fish in the pan</a>
+          <a href="#grilledfish">Grilled fish</a>
+          <a href="#pizzeria">Wood-fired oven pizzeria</a>
+          <a href="#desserts">Desserts</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+
+  <!-- CONTENT -->
+  <div class="container">
+
+    <section class="category" id="traditionaldishes">
+      <h2>Traditional Dishes</h2>
+      <div class="grid">
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/pjata tradicionale/corbe peshku.jpg" alt="CORBE PESHKU / Fish Stew">
+            <span class="price-badge">500 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">CORBE PESHKU / Fish Stew</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/pjata tradicionale/tave dheu.jpg" alt="TAVE DHEU / Albanian Clay Dish">
+            <span class="price-badge">450 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">TAVE DHEU / Albanian Clay Dish</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/pjata tradicionale/speca te mbushur.jpg" alt="SPECA TE MBUSHUR / Stuffed Peppers">
+            <span class="price-badge">450 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">SPECA TE MBUSHUR / Stuffed Peppers</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/pjata tradicionale/japrak.jpg" alt="JAPRAK / Stuffed Grape Leaves">
+            <span class="price-badge">450 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">JAPRAK / Stuffed Grape Leaves</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/pjata tradicionale/byrek shkodre.jpg" alt="BYREK SHKODRAN / Shkodra Style Pie">
+            <span class="price-badge">300 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">BYREK SHKODRAN / Shkodra Style Pie</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/pjata tradicionale/qofte shtepie.jpg" alt="QOFTE SHTEPIE / Homemade Meatballs">
+            <span class="price-badge">500 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">QOFTE SHTEPIE / Homemade Meatballs</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/pjata tradicionale/qofte me leng.jpg" alt="QOFTE ME LENG / Meatballs in Sauce">
+            <span class="price-badge">700 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">QOFTE ME LENG / Meatballs in Sauce</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/pjata tradicionale/tave kosi me mish qengji.jpg" alt="TAVE KOSI ME MISH QENGJI / Lamb Yogurt Casserole">
+            <span class="price-badge">1500 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">TAVE KOSI ME MISH QENGJI / Lamb Yogurt Casserole</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/pjata tradicionale/mish qengji me patate.jpg" alt="MISH QENGJI ME PATATE / Baked Lamb with Potatoes">
+            <span class="price-badge">1500 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">MISH QENGJI ME PATATE / Baked Lamb with Potatoes</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/pjata tradicionale/tave krapi.jpg" alt="TAVE KRAPI / Carp Casserole">
+            <span class="price-badge">1400 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">TAVE KRAPI / Carp Casserole</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/pjata tradicionale/njale drini.jpg" alt="NJALE DRINIT / Drini Lamprey">
+            <span class="price-badge">1800 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">NJALE DRINIT / Drini Lamprey</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/pjata tradicionale/eskallop.jpg" alt="ESKALLOP TRADICIONAL / Traditional Escalope">
+            <span class="price-badge">1400 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">ESKALLOP TRADICIONAL / Traditional Escalope</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/pjata tradicionale/mish ne furre.jpg" alt="MISH NE FURRE / Oven Baked Meat">
+            <span class="price-badge">2800 lek<br>5500 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">MISH NE FURRE (2p / 4p) / Oven Baked Meat for 2 or 4 persons</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        
+      </div>
+    </section>
+
+    <section class="category" id="appetizers">
+      <h2>Appetizers</h2>
+      <div class="grid">
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/antipasta/antipaste tradicionale.jpg" alt="ANTIPASTA TRADICIONALE / Traditional Appetizer">
+            <span class="price-badge">1500 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">ANTIPASTA TRADICIONALE / Traditional Appetizer</div>
+            <div class="desc"><i>Traditional</i></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="" alt="ANTIPASTA OBORRI SHKODRAN / Oborri Shkodran Appetizer">
+            <span class="price-badge">2500 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">ANTIPASTA OBORRI SHKODRAN" (4 PERSONA) / "Oborri Shkodran" Appetizer (4 persons)</div>
+            <div class="desc"><i>Traditional</i></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/antipasta/djathe miks.jpg" alt="DJATHE MIX / Mixed Cheeses">
+            <span class="price-badge">1000 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">DJATHE MIX / Mixed Cheeses</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/antipasta/antipasta italiane.jpg" alt="ANTIPASTE ITALIANE / Italian Appetizers">
+            <span class="price-badge">1500 lek<br>2500 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">ANTIPASTE ITALIANE (2 - 4 PERSONA) / Italian Appetizers (2 - 4 persons)</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        
+      </div>
+    </section>
+
+    <section class="category" id="sidedishes">
+      <h2>Side dishes</h2>
+      <div class="grid">
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/mesore/sallate shtepie.jpg" alt="SALLATE SHTEPIE / Homemade Salad">
+            <span class="price-badge">500 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">SALLATE SHTEPIE / Homemade Salad</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/mesore/sallate mikse.jpg" alt="SALLATE MIKSE / Mixed Salad">
+            <span class="price-badge">300 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">SALLATE MIKSE / Mixed Salad</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/mesore/sallate shope.jpg" alt="SALLATE SHOPE / Shopska Salad">
+            <span class="price-badge">500 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">SALLATE SHOPE / Shopska Salad</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="" alt="SALLATE OBORRI SHKODRAN / Oborri Shkodran Salad">
+            <span class="price-badge">1000 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">SALLATE "OBORRI SHKODRAN" / "Oborri Shkodran" Salad</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/mesore/sallate rukola & parmigiano.jpg" alt="SALLATE RUKOLA & PARMIGIANO / Arugula & Parmigiano Salad">
+            <span class="price-badge">500 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">SALLATE RUKOLA & PARMIGIANO / Arugula & Parmigiano Salad</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/mesore/sallate cezar.jpg" alt="SALLATE CEZAR / Caesar Salad">
+            <span class="price-badge">700 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">SALLATE CEZAR / Caesar Salad</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/mesore/sallate patellxhani.jpg" alt="SALLATE PATELLXHANI / Eggplant Salad">
+            <span class="price-badge">500 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">SALLATE PATELLXHANI / Eggplant Salad</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/mesore/sallate perimesh ne zgare.jpg" alt="SALLATE PERIMESH NE ZGARE / Grilled Vegetable Salad">
+            <span class="price-badge">400 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">SALLATE PERIMESH NE ZGARE / Grilled Vegetable Salad</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/mesore/djathe dhie.jpg" alt="DJATHE DHIE / Goat Cheese">
+            <span class="price-badge">300 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">DJATHE DHIE / Goat Cheese</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/mesore/djathe ne furre.jpg" alt="DJATHE NE FURRE / Oven Baked Cheese">
+            <span class="price-badge">400 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">DJATHE NE FURRE / Oven Baked Cheese</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/mesore/djathe kackavall.jpg" alt="DJATHE KACKAVALL / Kackavall Cheese">
+            <span class="price-badge">300 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">DJATHE KACKAVALL / Kackavall Cheese</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/mesore/patate te skuqura.jpg" alt="PATATE TE SKUQURA / French Fries">
+            <span class="price-badge">250 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">PATATE TE SKUQURA / French Fries</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/mesore/salce xaxiqi.jpg" alt="SALCE XAXIQI / Tzatziki Sauce">
+            <span class="price-badge">250 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">SALCE XAXIQI / Tzatziki Sauce</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/mesore/patate ne furre me krem djathi.jpg" alt="PATATE NE FURRE ME KREM DJATHI / Oven Baked Potatoes with Cheese Cream">
+            <span class="price-badge">500 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">PATATE NE FURRE ME KREM DJATHI / Oven Baked Potatoes with Cheese Cream</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        
+      </div>
+    </section>
+
+    <section class="category" id="soups">
+      <h2>Soups</h2>
+      <div class="grid">
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/supa/supe peshku.jpg" alt="SUPE PESHKU / Fish Soup">
+            <span class="price-badge">500 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">SUPE PESHKU / Fish Soup</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/supa/supe pule.jpg" alt="SUPE PULE / Chicken Soup">
+            <span class="price-badge">400 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">SUPE PULE / Chicken Soup</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/supa/supe perimesh.jpg" alt="SUPE PERIMESH / Vegetable Soup">
+            <span class="price-badge">400 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">SUPE PERIMESH / Vegetable Soup</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        
+      </div>
+    </section>
+
+    <section class="category" id="pasta">
+      <h2>Pasta</h2>
+      <div class="grid">
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="" alt="LINGUINI OBORRI SHKODRAN / Oborri Shkodran Linguini">
+            <span class="price-badge">1000 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">LINGUINI "OBORRI SHKODRAN" / "Oborri Shkodran" Linguini</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/pasta/linguini me karkaleca dhe kungull.jpg" alt="LINGUINI ME KARKALECA DHE KUNGULL / Linguini with Shrimps and Zucchini">
+            <span class="price-badge">800 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">LINGUINI ME KARKALECA DHE KUNGULL / Linguini with Shrimps and Zucchini</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/pasta/linguini me fruta deti.jpg" alt="LINGUINI ME FRUTA DETI / Linguini with Seafood">
+            <span class="price-badge">750 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">LINGUINI ME FRUTA DETI / Linguini with Seafood</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/pasta/spageti pomodoro.jpg" alt="SPAGETI POMODORO / Spaghetti Pomodoro">
+            <span class="price-badge">500 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">SPAGETI POMODORO / Spaghetti Pomodoro</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/pasta/spageti bolognese.jpg" alt="SPAGETI BOLONJEZE / Spaghetti Bolognese">
+            <span class="price-badge">650 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">SPAGETI BOLONJEZE / Spaghetti Bolognese</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/pasta/spageti me salmon.jpg" alt="SPAGETI ME SALMON / Spaghetti with Salmon">
+            <span class="price-badge">1000 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">SPAGETI ME SALMON / Spaghetti with Salmon</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/pasta/spageti e cmendur.jpg" alt="SPAGETI E CMENDUR / Crazy Spaghetti">
+            <span class="price-badge">1200 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">SPAGETI E CMENDUR / Crazy Spaghetti</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/pasta/spageti me fileto vici.jpg" alt="SPAGETI ME FILETO VICI / Spaghetti with Beef Fillet">
+            <span class="price-badge">1200 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">SPAGETI ME FILETO VICI / Spaghetti with Beef Fillet</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/pasta/ravioli me tartuf.jpg" alt="RAVIOLI ME TARTUF / Ravioli with Truffle">
+            <span class="price-badge">800 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">RAVIOLI ME TARTUF / Ravioli with Truffle</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/pasta/ravioli me spinaq dhe rikota.jpg" alt="RAVIOLI ME SPINAQ DHE RIKOTA / Ravioli with Spinach and Ricotta">
+            <span class="price-badge">800 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">RAVIOLI ME SPINAQ DHE RIKOTA / Ravioli with Spinach and Ricotta</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/pasta/ravioli me salmon dhe domate te thata.jpg" alt="RAVIOLI ME SALMON DHE DOMATE TE THATA / Ravioli with Salmon and Sun-dried Tomatoes">
+            <span class="price-badge">1000 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">RAVIOLI ME SALMON DHE DOMATE TE THATA / Ravioli with Salmon and Sun-dried Tomatoes</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        
+      </div>
+    </section>
+
+    <section class="category" id="risotto">
+      <h2>Risotto</h2>
+      <div class="grid">
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/rizoto/rizoto me karkaleca.jpg" alt="RIZOTO ME KARKALECA / Risotto with Shrimps">
+            <span class="price-badge">800 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">RIZOTO ME KARKALECA / Risotto with Shrimps</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/rizoto/rizoto me fruta deti.jpg" alt="RIZOTO ME FRUTA DETI / Risotto with Seafood">
+            <span class="price-badge">750 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">RIZOTO ME FRUTA DETI / Risotto with Seafood</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/rizoto/rizoto me spinaq dhe gorgonzola.jpg" alt="RIZOTO ME SPINAQ DHE GORGONZOLA / Risotto with Spinach and Gorgonzola">
+            <span class="price-badge">800 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">RIZOTO ME SPINAQ DHE GORGONZOLA / Risotto with Spinach and Gorgonzola</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/rizoto/rizoto me salmon.jpg" alt="RIZOTO ME SALMON / Risotto with Salmon">
+            <span class="price-badge">1000 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">RIZOTO ME SALMON / Risotto with Salmon</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        
+      </div>
+    </section>
+
+    <section class="category" id="steakhouse">
+      <h2>Steakhouse</h2>
+      <div class="grid">
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/mish/eskallop pane dhe kerpudha.jpg" alt="ESKALLOP PANE DHE KERPUDHA / Breaded Escalope with Mushrooms">
+            <span class="price-badge">1600 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">ESKALLOP PANE DHE KERPUDHA / Breaded Escalope with Mushrooms</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/mish/eskallop i mbushur.jpg" alt="ESKALLOP I MBUSHUR / Stuffed Escalope">
+            <span class="price-badge">1600 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">ESKALLOP I MBUSHUR / Stuffed Escalope</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="" alt="ESKALLOP OBORRI SHKODRAN / Oborri Shkodran Escalope">
+            <span class="price-badge">1800 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">ESKALLOP "OBORRI SHKODRAN" / "Oborri Shkodran" Escalope</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/mish/fileto pule ne zgare.jpg" alt="FILETO PULE NE ZGARE / Grilled Chicken Fillet">
+            <span class="price-badge">700 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">FILETO PULE NE ZGARE / Grilled Chicken Fillet</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/mish/fileto pule e mbushur.jpg" alt="FILETO PULE E MBUSHUR / Stuffed Chicken Fillet">
+            <span class="price-badge">1000 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">FILETO PULE E MBUSHUR / Stuffed Chicken Fillet</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        
+      </div>
+    </section>
+
+    <section class="category" id="grilledsteakhouse">
+      <h2>Grilled Steakhouse</h2>
+      <div class="grid">
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/mish ne zgare/biftek ne zgare.jpg" alt="BIFTEK NE ZGARE / Grilled Beefsteak">
+            <span class="price-badge">1400 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">BIFTEK NE ZGARE / Grilled Beefsteak</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/mish ne zgare/brinje ne zgare.jpg" alt="BRINJE NE ZGARE / Grilled Beef Ribs">
+            <span class="price-badge">1300 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">BRINJE NE ZGARE / Grilled Beef Ribs</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/mish ne zgare/berxolle ne zgare.jpg" alt="BERXOLLE NE ZGARE / Grilled Beef Chop">
+            <span class="price-badge">1400 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">BERXOLLE NE ZGARE / Grilled Beef Chop</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/mish ne zgare/paidhaqe.jpg" alt="PAIDHAQE / Beef Panceta">
+            <span class="price-badge">1300 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">PAIDHAQE / Beef Panceta</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/mish ne zgare/tomahawk.jpg" alt="Tomahawk / Tomahawk">
+            <span class="price-badge">350 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">Tomahawk / Tomahawk</div>
+            <div class="desc">100 gr</div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/mish ne zgare/fiorentina.jpg" alt="FLORENTINA / Florentina">
+            <span class="price-badge">400 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">FLORENTINA / Florentina</div>
+            <div class="desc">100 gr</div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/mish ne zgare/strip steak.jpg" alt="STRIP STEAK / Strip Steak">
+            <span class="price-badge">1800 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">STRIP STEAK / Strip Steak</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="" alt="STRIP STEAK OBORRI SHKODRAN / Oborri Shkodran Strip Steak">
+            <span class="price-badge">2200 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">STRIP STEAK "OBORRI SHKODRAN" / "Oborri Shkodran" Strip Steak</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        
+      </div>
+    </section>
+
+    <section class="category" id="beeffillets">
+      <h2>Beef fillets</h2>
+      <div class="grid">
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/fileto vici/fileto vici ne zgare.jpg" alt="FILETO VICI NE ZGARE / Grilled Beef Fillet">
+            <span class="price-badge">1800 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">FILETO VICI NE ZGARE / Grilled Beef Fillet</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/fileto vici/taliata.jpg" alt="TALIATA / Taliata">
+            <span class="price-badge">2000 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">TALIATA / Taliata</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/fileto vici/fileto vici me salce roze.jpg" alt="FILETO VICI ME SALCE ROZE / Beef Fillet with Pink Sauce">
+            <span class="price-badge">2200 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">FILETO VICI ME SALCE ROZE / Beef Fillet with Pink Sauce</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/fileto vici/fileto vici primavera.jpg" alt="FILETO VICI PRIMAVERA / Beef Fillet Primavera">
+            <span class="price-badge">2400 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">FILETO VICI "PRIMAVERA" / Beef Fillet "Primavera"</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/fileto vici/fileto vici me arra dhe gorgonzola.jpg" alt="FILETO VICI ME ARRA DHE GORGONZOLA / Beef Fillet with Walnuts and Gorgonzola">
+            <span class="price-badge">2400 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">FILETO VICI ME ARRA DHE GORGONZOLA / Beef Fillet with Walnuts and Gorgonzola</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/fileto vici/fileto vici me salce balsamike.jpg" alt="FILETO VICI ME SALCE BALSAMIKE / Beef Fillet with Balsamic Sauce">
+            <span class="price-badge">2400 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">FILETO VICI ME SALCE BALSAMIKE / Beef Fillet with Balsamic Sauce</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/fileto vici/fileto vici meksikane.jpg" alt="FILETO VICI MEKSIKANE / Mexican-Style Beef Fillet">
+            <span class="price-badge">2400 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">FILETO VICI MEKSIKANE / Mexican-Style Beef Fillet</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="" alt="FILETO VICI OBORRI SHKODRAN / Oborri Shkodran Beef Fillet">
+            <span class="price-badge">2800 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">FILETO VICI "OBORRI SHKODRAN" / "Oborri Shkodran" Beef Fillet</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        
+      </div>
+    </section>
+
+    <section class="category" id="seafoodappetizers">
+      <h2>Seafood Appetizers</h2>
+      <div class="grid">
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/antipasta deti/sallate me fruta deti.jpg" alt="SALLATE ME FRUTA DETI E FTOHTE / E NGROHTE 2/4 PERSONA / Cold / Hot Seafood Salad for 2/4 persons">
+            <span class="price-badge">1800 lek<br>3000 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">SALLATE ME FRUTA DETI E FTOHTE / E NGROHTE 2/4 PERSONA / Cold / Hot Seafood Salad for 2/4 persons</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/antipasta deti/sallate me salmon.jpg" alt="SALLATE ME SALMON / Salmon Salad">
+            <span class="price-badge">2200 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">SALLATE ME SALMON / Salmon Salad</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/antipasta deti/sallate me oktapod.jpg" alt="SALLATE ME OKTAPOD / Octopus Salad">
+            <span class="price-badge">2000 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">SALLATE ME OKTAPOD / Octopus Salad</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/antipasta deti/krudo.jpg" alt="KRUDO (2 / 4 PERSONA) / Crudo (2 / 4 persons)">
+            <span class="price-badge">2000 lek<br>3500 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">KRUDO (2 / 4 PERSONA) / Crudo (2 / 4 persons)</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        
+      </div>
+    </section>
+
+    <section class="category" id="fishinthepan">
+      <h2>Fish in the pan</h2>
+      <div class="grid">
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/peshk ne tigan/kallamare frite.jpg" alt="KALLAMARE FRITE / Fried Squid">
+            <span class="price-badge">1200 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">KALLAMARE FRITE / Fried Squid</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/peshk ne tigan/karkaleca frite.jpg" alt="KARKALECA FRITE / Fried Shrimps">
+            <span class="price-badge">1700 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">KARKALECA FRITE / Fried Shrimps</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/peshk ne tigan/salmon oborri shkodran.jpg" alt="SALMON OBORRI SHKODRAN / Oborri Shkodran Salmon">
+            <span class="price-badge">2400 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">SALMON "OBORRI SHKODRAN" / "Oborri Shkodran" Salmon</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/peshk ne tigan/peshku i dites.jpg" alt="PESHKU I DITES / Fish of the Day">
+            <span class="price-badge">450 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">PESHKU I DITES / Fish of the Day</div>
+            <div class="desc">100 gr</div>
+          </div>
+        </article>
+
+        
+      </div>
+    </section>
+
+    <section class="category" id="grilledfish">
+      <h2>Grilled fish</h2>
+      <div class="grid">
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/peshk ne zgare/levrek.jpg" alt="LEVREK / Sea Bass">
+            <span class="price-badge">1300 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">LEVREK / Sea Bass</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/peshk ne zgare/koce.jpg" alt="KOCE / Sea Bream">
+            <span class="price-badge">1200 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">KOCE / Sea Bream</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/peshk ne zgare/karkaleca.jpg" alt="KARKALECA / Shrimps">
+            <span class="price-badge">1500 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">KARKALECA / Shrimps</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/peshk ne zgare/kallamar.jpg" alt="KALLAMAR / Squid">
+            <span class="price-badge">1100 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">KALLAMAR / Squid</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/peshk ne zgare/salmon.jpg" alt="SALMON / Salmon">
+            <span class="price-badge">1800 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">SALMON / Salmon</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/peshk ne zgare/peshku i dites.jpg" alt="PESHKU I DITES / Fish of the Day">
+            <span class="price-badge">450 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">PESHKU I DITES / Fish of the Day</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        
+      </div>
+    </section>
+
+    <section class="category" id="pizzeria">
+      <h2>Wood-fired oven pizzeria</h2>
+      <div class="grid">
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/piceri furre me dru/pica margarita.jpg" alt="PICA MARGARITA / Margherita Pizza">
+            <span class="price-badge">500 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">PICA MARGARITA / Margherita Pizza</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/piceri furre me dru/pica me proshute.jpg" alt="PICA ME PROSHUTE / Ham Pizza">
+            <span class="price-badge">650 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">PICA ME PROSHUTE / Ham Pizza</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/piceri furre me dru/pica me sallam dhe proshute.jpg" alt="PICA ME SALLAM DHE PROSHUTE / Salami and Ham Pizza">
+            <span class="price-badge">650 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">PICA ME SALLAM DHE PROSHUTE / Salami and Ham Pizza</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/piceri furre me dru/pica diavola.jpg" alt="PICA DIAVOLA / Diavola Pizza">
+            <span class="price-badge">650 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">PICA "DIAVOLA" / "Diavola" Pizza</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/piceri furre me dru/pica kater stinet.jpg" alt="PICA KATER STINET / Four Seasons Pizza">
+            <span class="price-badge">650 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">PICA "KATER STINET" / "Four Seasons" Pizza</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/piceri furre me dru/pica kapricoze.jpg" alt="PICA KAPRICOZE / Capricciosa Pizza">
+            <span class="price-badge">650 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">PICA "KAPRICOZE" / "Capricciosa" Pizza</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/piceri furre me dru/pica me proshute te tymosur.jpg" alt="PICA ME PROSHUTE TE TYMOSUR / Smoked Ham Pizza">
+            <span class="price-badge">800 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">PICA ME PROSHUTE TE TYMOSUR / Smoked Ham Pizza</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="" alt="PICA OBORRI SHKODRAN / Oborri Shkodran Pizza">
+            <span class="price-badge">1000 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">PICA "OBORRI SHKODRAN" / "Oborri Shkodran" Pizza</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/piceri furre me dru/pica me fruta deti.jpg" alt="PICA ME FRUTA DETI / Seafood Pizza">
+            <span class="price-badge">850 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">PICA ME FRUTA DETI / Seafood Pizza</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/piceri furre me dru/pica me karkaleca.jpg" alt="PICA ME KARKALECA / Shrimp Pizza">
+            <span class="price-badge">900 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">PICA ME KARKALECA / Shrimp Pizza</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/piceri furre me dru/fokace.jpg" alt="FOKACE / Focaccia">
+            <span class="price-badge">200 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">FOKACE / Focaccia</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/piceri furre me dru/brusketa.jpg" alt="BRUSKETE / Bruschetta">
+            <span class="price-badge">350 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">BRUSKETE / Bruschetta</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        
+      </div>
+    </section>
+
+    <section class="category" id="desserts">
+      <h2>Desserts</h2>
+      <div class="grid">
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/embelsira/bakllava.jpg" alt="BAKLLAVA / Baklava">
+            <span class="price-badge">300 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">BAKLLAVA / Baklava</div>
+            <div class="desc"><i>Traditional</i></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/embelsira/tespixhe.jpg" alt="TESPIXHE / Tespixhe">
+            <span class="price-badge">200 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">TESPIXHE / Tespixhe</div>
+            <div class="desc"><i>Traditional</i></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/embelsira/kadaif.png" alt="KADAIF / Kadaif">
+            <span class="price-badge">300 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">KADAIF / Kadaif</div>
+            <div class="desc"><i>Traditional</i></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/embelsira/akullore.jpg" alt="AKULLORE / Ice Cream">
+            <span class="price-badge">200 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">AKULLORE / Ice Cream</div>
+            <div class="desc"><i>Traditional</i></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/embelsira/cheesecake.jpg" alt="CIZKEIK / Cheesecake">
+            <span class="price-badge">400 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">CIZKEIK / Cheesecake</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/embelsira/tiramisu.jpg" alt="TIRAMISU / Tiramisu">
+            <span class="price-badge">350 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">TIRAMISU / Tiramisu</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/RESTORANT/embelsira/panna cotta.jpg" alt="PANAKOTA / Panna Cotta">
+            <span class="price-badge">250 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">PANAKOTA / Panna Cotta</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        
+      </div>
+    </section>
+
+    
+  </div>
+
+  <script>
+    // Highlight active section in navbar
+    const sections = document.querySelectorAll("section.category");
+    const navLinks = document.querySelectorAll(".cat-list a");
+
+    window.addEventListener("scroll", () => {
+      let current = "";
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 120;
+        if (scrollY >= sectionTop) current = section.getAttribute("id");
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === "#" + current) {
+          link.classList.add("active");
+        }
+      });
+    });
+
+    
+  </script>
+</body>
+</html>

@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Oborri Shkodran - Menu</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <style>
+    /* ====== ROOT VARIABLES ====== */
+    :root {
+      --bg: rgba(247,243,239,0.9);
+      --text: #3a2c23;
+      --muted: #6b645a;
+      --accent: #c5a880;
+      --card-bg: rgba(255,255,255,0.95);
+      --border: #d8cbb6;
+      --radius: 16px;
+      --shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    * { box-sizing: border-box; scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: 'Georgia', serif;
+      color: var(--text);
+      background-image: linear-gradient(var(--bg), var(--bg)),
+        url('foto/vinoteka\ -\ background.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      line-height: 1.5;
+    }
+
+    /* ====== NAVBAR ====== */
+    .navbar-wrap {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.8);
+      backdrop-filter: blur(6px);
+      border-bottom: 2px solid var(--border);
+    }
+
+    nav.navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0.7rem 1rem;
+    }
+
+    .nav-brand {
+      font-weight: 700;
+      font-size: 1.3rem;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .nav-brand:hover { color: var(--accent); }
+
+    .cat-scroll {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .cat-scroll::-webkit-scrollbar { display: none; }
+
+    .cat-list a {
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      color: var(--text);
+      border: 1px solid transparent;
+      transition: 0.3s;
+      font-weight: 500;
+    }
+
+    .cat-list a:hover,
+    .cat-list a.active {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    /* ====== HEADER ====== */
+    header.menu-header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-top: 100px;
+    }
+
+    .menu-logo {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      border: 3px solid var(--accent);
+      box-shadow: var(--shadow);
+      object-fit: cover;
+    }
+
+    /* ====== MAIN CONTENT ====== */
+    .container {
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 1rem;
+    }
+
+    section.category {
+      margin-top: 4rem;
+      scroll-margin-top: 100px; /* offset for navbar */
+    }
+
+    .category h2 {
+      border-bottom: 2px solid var(--accent);
+      display: inline-block;
+      padding-bottom: 0.2rem;
+      color: var(--text);
+    }
+
+    /* ====== GRID ====== */
+    .grid {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 25px;
+      width: 100%;
+      margin-top: 1rem;
+    }
+
+    /* ====== CARD ====== */
+    .card {
+      background: rgba(244, 233, 222, 0.9);
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      width: 80%;              /* large on PC */
+      max-width: 350px;        /* limit too large stretch */
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover { transform: scale(1.02); }
+
+    .card img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 3 / 4.5;
+      object-fit: cover;
+      background: #f3f4f6;
+    }
+
+    .card .meta {
+      padding: 1rem 1.2rem;
+      text-align: center;
+    }
+
+    .title {
+      font-weight: 600;
+      font-size: 1.3rem;
+      color: #3a2c23;
+      margin-bottom: 0.3rem;
+    }
+
+    .desc {
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .img-wrap {
+      position: relative;
+    }
+
+    .price-badge {
+      position: absolute;
+      right: 10px;
+      bottom: 10px;
+      padding: .4rem .7rem;
+      background: var(--accent);
+      color: #fff;
+      font-weight: bold;
+      border-radius: 999px;
+      font-size: .9rem;
+      box-shadow: var(--shadow);
+    }
+
+    /* ====== RESPONSIVE ====== */
+    @media (max-width: 768px) {
+      .menu-logo {
+        width: 130px;
+        height: 130px;
+      }
+
+      .card {
+        width: 95%;   /* almost full width on phone */
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <div class="navbar-wrap">
+    <nav class="navbar">
+      <a href="index.html" class="nav-brand">Oborri Shkodran</a>
+      <div class="cat-scroll">
+        <div class="cat-list">
+          <a href="#vereekuqe">Vere e Kuqe</a>
+          <a href="#vereebardhe">Vere e Bardhe</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+
+  <!-- CONTENT -->
+  <div class="container">
+    <section class="category" id="vereekuqe">
+      <h2>Verera te Kuqe</h2>
+      <div class="grid">
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/VINOTEKA/arberi kallmet.png" alt="Arberi Kallmet">
+            <span class="price-badge">2500 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">Arberi Kallmet</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/VINOTEKA/arberi kallmet rezerve.png" alt="Arberi Kallmet Rezerve">
+            <span class="price-badge">3500 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">Arberi Kallmet Rezerve</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/VINOTEKA/colle cavaliere montepulciano d'abruzzo 0.375.png" alt="Colle Cavaliere Montepulciano d'Abruzzo">
+            <span class="price-badge">1200 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">Colle Cavaliere Montepulciano d'Abruzzo</div>
+            <div class="desc">0.375 l</div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/VINOTEKA/montepulciano d'abruzzo.png" alt="Montepulciano d'Abruzzo">
+            <span class="price-badge">2000 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">Montepulciano d'Abruzzo</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/VINOTEKA/montepulciano d'abruzzo.png" alt="Montepulciano d'Abruzzo">
+            <span class="price-badge">2500 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">Montepulciano d'Abruzzo</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/VINOTEKA/primitivo salento monturo.png" alt="Primitivo Salento Moturo">
+            <span class="price-badge">2500 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">Primitivo Salento Moturo</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/VINOTEKA/aglianico primitivo puglia.png" alt="Aglianico - Primitivo Puglia">
+            <span class="price-badge">3500 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">Aglianico - Primitivo Puglia</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/VINOTEKA/primitivo di manduria sua maesta.png" alt="Primitivo di Manduria Sua Mesta">
+            <span class="price-badge">4000 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">Primitivo di Manduria Sua Mesta</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/VINOTEKA/primitivo di manduria lu rappaio.png" alt="Primitivo di Manduria Lu Rappaio">
+            <span class="price-badge">4500 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">Primitivo di Manduria Lu Rappaio</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/VINOTEKA/primitivo di papale linea oro.png" alt="Primitivo di Papale Linea Oro">
+            <span class="price-badge">5500 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">Primitivo di Papale Linea Oro</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/VINOTEKA/primitivo di manduria infinity.png" alt="Primitivo di Manduria Infinity Limited Edition">
+            <span class="price-badge">7500 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">Primitivo di Manduria Infinity Limited Edition</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/VINOTEKA/amorini rosso imperatore.png" alt="Amorini Rosso Imperatore">
+            <span class="price-badge">3000 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">Amorini Rosso Imperatore</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/VINOTEKA/la salute cabernet sauvignon.png" alt="La Salute Cabernet Sauvignon">
+            <span class="price-badge">3000 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">La Salute Cabernet Sauvignon</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/VINOTEKA/confino.png" alt="Confino">
+            <span class="price-badge">3500 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">Confino</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/VINOTEKA/valpolicella ripasso.png" alt="Valpolicella Ripasso">
+            <span class="price-badge">3500 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">Valpolicella Ripasso</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/VINOTEKA/valpolicella ripasso superiore.png" alt="Valpolicella Ripasso Superiore">
+            <span class="price-badge">5500 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">Valpolicella Ripasso Superiore</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/VINOTEKA/piccini buon governo.png" alt="Piccini Buon Governo">
+            <span class="price-badge">3500 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">Piccini Buon Governo</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/VINOTEKA/dolcetto d'alba.png" alt="Dolceto d'Alba">
+            <span class="price-badge">3500 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">Dolceto d'Alba</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/VINOTEKA/pinot nero.png" alt="Pinot Nero">
+            <span class="price-badge">3500 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">Pinot Nero</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/VINOTEKA/chianti riserva.png" alt="Chianti Riserva">
+            <span class="price-badge">4000 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">Chianti Riserva</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/VINOTEKA/chianti classico.png" alt="Chianti Classico">
+            <span class="price-badge">4500 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">Chianti Classico</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/VINOTEKA/campoluce chianti biologico.png" alt="Campoluce Chianti Biologico">
+            <span class="price-badge">4500 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">Campoluce Chianti Biologico</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/VINOTEKA/leonus.png" alt="Leonus">
+            <span class="price-badge">4000 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">Leonus</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/VINOTEKA/ca dei frati ronchedone.png" alt="Cadei Frati Ronchedone">
+            <span class="price-badge">6000 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">Cadei Frati Ronchedone</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/VINOTEKA/mammut.png" alt="Mammut">
+            <span class="price-badge">6000 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">Mammut</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/VINOTEKA/barbaresco.png" alt="Barbaresco">
+            <span class="price-badge">7000 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">Barbaresco</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/VINOTEKA/brunello di montalcino.png" alt="Brunello di Montalcino">
+            <span class="price-badge">8000 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">Brunello di Montalcino</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/VINOTEKA/brunello di montalcino poggio salvi.png" alt="Drunello di Montalcino Poggio Salvi">
+            <span class="price-badge">9000 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">Drunello di Montalcino Poggio Salvi</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/VINOTEKA/barolo patres.png" alt="Barolo Patres">
+            <span class="price-badge">8000 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">Barolo Patres</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/VINOTEKA/amarone della valpolicella bisano.png" alt="Amarone della Valpolicella Bisano">
+            <span class="price-badge">8000 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">Amarone della Valpolicella Bisano</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/VINOTEKA/amarone rizerva.png" alt="Amarone Riserva">
+            <span class="price-badge">18000 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">Amarone Riserva</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+
+      </div>
+    </section>
+
+    <!-- more sections -->
+    <section class="category" id="vereebardhe">
+      <h2>Verera te Bardha</h2>
+      <div class="grid">
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/VINOTEKA/vere e bardhe/arberi shesh i bardhe.png" alt="Arberi Shesh i Bardhe">
+            <span class="price-badge">2500 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">Arberi Shesh i Bardhe</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/VINOTEKA/vere e bardhe/pinot grigio 375.png" alt="Pinot Grigio">
+            <span class="price-badge">1200 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">Pinot Grigio</div>
+            <div class="desc">0.375 l</div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/VINOTEKA/vere e bardhe/pecorino luna.png" alt="Pecorina Luna">
+            <span class="price-badge">2000 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">Pecorina Luna</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/VINOTEKA/vere e bardhe/pinot grigio.png" alt="Pinot Grigio">
+            <span class="price-badge">2200 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">Pinot Grigio</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/VINOTEKA/vere e bardhe/pinot grigio garda.png" alt="Pinot Grigio Garda">
+            <span class="price-badge">2500 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">Pinot Grigio Garda</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/VINOTEKA/vere e bardhe/pinot grigio delle venezie.png" alt="Pinot Grigio delle Venezie">
+            <span class="price-badge">2500 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">Pinot Grigio delle Venezie</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/VINOTEKA/vere e bardhe/prosecco.png" alt="Prosecco">
+            <span class="price-badge">2500 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">Prosecco</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/VINOTEKA/vere e bardhe/prosecco rose.png" alt="Prosecco Rose">
+            <span class="price-badge">2500 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">Prosecco Rose</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/VINOTEKA/vere e bardhe/greco di tufo il cavaliere.png" alt="Greco di Tufo il Cavaliere">
+            <span class="price-badge">3000 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">Greco di Tufo il Cavaliere</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/VINOTEKA/vere e bardhe/toscana rosato.png" alt="Toscana Rosato">
+            <span class="price-badge">3500 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">Toscana Rosato</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/VINOTEKA/vere e bardhe/pecorino cantine tollo.png" alt="Pecorino Cantine Tollo">
+            <span class="price-badge">3500 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">Pecorino Cantine Tollo</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/VINOTEKA/vere e bardhe/chardonnay leite.png" alt="Chardonnay Leite">
+            <span class="price-badge">4000 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">Chardonnay Leite</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/VINOTEKA/vere e bardhe/calalenta pecorino fantini.png" alt="Calalenta Pecorini Fantini">
+            <span class="price-badge">4500 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">Calalenta Pecorini Fantini</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/VINOTEKA/vere e bardhe/donnaluce.png" alt="Donnaluce">
+            <span class="price-badge">5000 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">Donnaluce</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/VINOTEKA/vere e bardhe/aime.png" alt="Aime">
+            <span class="price-badge">6000 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">Aime</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/VINOTEKA/vere e bardhe/ca dei frati lugana.png" alt="Cadei Frati Lugana">
+            <span class="price-badge">6000 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">Cadei Frati Lugana</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // Highlight active section in navbar
+    const sections = document.querySelectorAll("section.category");
+    const navLinks = document.querySelectorAll(".cat-list a");
+
+    window.addEventListener("scroll", () => {
+      let current = "";
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 120;
+        if (scrollY >= sectionTop) current = section.getAttribute("id");
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === "#" + current) {
+          link.classList.add("active");
+        }
+      });
+    });
+  </script>
+</body>
+</html>

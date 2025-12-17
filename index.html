@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome - Oborri Shkodran</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Georgia', serif;
+      background-image: linear-gradient(rgba(247,243,239,0.9), rgba(247,243,239,0.9)),
+                        url('foto/background.jpg');
+      background-size: cover;
+      background-position: center;
+      color: #3b2a1a;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 3em;
+      color: #4a3b2b;
+      margin-bottom: 20px;
+    }
+
+    p.greeting {
+      font-size: 1.2em;
+      color: #5a4632;
+      margin-bottom: 60px;
+    }
+
+    .menu-section {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    a.menu-card {
+      text-decoration: none;
+      flex: 0 1 32%;
+      max-width: 380px;
+      background-color: rgba(255, 255, 255, 0.9);
+      border: 2px solid #c5a880;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      overflow: hidden;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      color: inherit; /* ensures text inside keeps same color */
+    }
+
+    a.menu-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    .menu-card img {
+      width: 100%;
+      height: 330px;
+      object-fit: cover;
+      border-bottom: 2px solid #c5a880;
+    }
+
+    .menu-card h2 {
+      margin: 15px 0 20px;
+      font-size: 1.5em;
+      color: #4a3927;
+    }
+
+    .menu-card p {
+      padding: 0 15px 20px;
+      font-size: 1em;
+      color: #6d5841;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      color: #6d5841;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .menu-section {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      a.menu-card {
+      width: 100%;      /* ensures equal full width */
+      max-width: 500px; /* adjust if you want narrower on phones */
+    }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Mirë se keni ardhë në Oborrin Shkodran</h1>
+    <p class="greeting">Ku mikpritja, shija dhe tradita bashkohen në një vend</p>
+
+    <div class="menu-section">
+      <!-- BAR -->
+      <a href="bar.html" class="menu-card">
+        <img src="foto/bar - main.jpg" alt="Bar Oborri Shkodran">
+        <h2>Bar</h2>
+        <p>Shijoni pije të përzgjedhura, kokteje klasike dhe aromë kafeje tradicionale</p>
+      </a>
+
+      <!-- RESTORANT -->
+      <a href="restorant.html" class="menu-card">
+        <img src="foto/restaurant - main.jpg" alt="Restorant Oborri Shkodran">
+        <h2>Restorant</h2>
+        <p>Traditë shkodrane në çdo pjatë – receta të vjetra me shije të reja</p>
+      </a>
+
+      <!-- VINOTEKA -->
+      <a href="vinoteka.html" class="menu-card">
+        <img src="foto/vinoteka - main.jpg" alt="Vinoteka Oborri Shkodran">
+        <h2>Vinoteka</h2>
+        <p>Zgjedhje verërash shqiptare e mesdhetare për çdo rast e shije</p>
+      </a>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>© 2025 Oborri Shkodran | Krijuar me dashni për traditën</p>
+  </footer>
+
+</body>
+</html>

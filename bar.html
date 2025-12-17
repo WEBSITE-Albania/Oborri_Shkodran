@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Oborri Shkodran - Menu</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <style>
+    /* ====== ROOT VARIABLES ====== */
+    :root {
+      --bg: rgba(247,243,239,0.9);
+      --text: #3a2c23;
+      --muted: #6b645a;
+      --accent: #c5a880;
+      --card-bg: rgba(255,255,255,0.95);
+      --border: #d8cbb6;
+      --radius: 16px;
+      --shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    * { box-sizing: border-box; scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: 'Georgia', serif;
+      color: var(--text);
+      background-image: linear-gradient(var(--bg), var(--bg)),
+        url('foto/bar\ -\ background.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      line-height: 1.5;
+    }
+
+    /* ====== NAVBAR ====== */
+    .navbar-wrap {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.8);
+      backdrop-filter: blur(6px);
+      border-bottom: 2px solid var(--border);
+    }
+
+    nav.navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0.7rem 1rem;
+    }
+
+    .nav-brand {
+      font-weight: 700;
+      font-size: 1.3rem;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .nav-brand:hover { color: var(--accent); }
+
+    .cat-scroll {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .cat-scroll::-webkit-scrollbar { display: none; }
+
+    .cat-list a {
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      color: var(--text);
+      border: 1px solid transparent;
+      transition: 0.3s;
+      font-weight: 500;
+    }
+
+    .cat-list a:hover,
+    .cat-list a.active {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    /* ====== HEADER ====== */
+    header.menu-header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-top: 100px;
+    }
+
+    .menu-logo {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      border: 3px solid var(--accent);
+      box-shadow: var(--shadow);
+      object-fit: cover;
+    }
+
+    /* ====== MAIN CONTENT ====== */
+    .container {
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 1rem;
+    }
+
+    section.category {
+      margin-top: 4rem;
+      scroll-margin-top: 100px; /* offset for navbar */
+    }
+
+    .category h2 {
+      border-bottom: 2px solid var(--accent);
+      display: inline-block;
+      padding-bottom: 0.2rem;
+      color: var(--text);
+    }
+
+    /* ====== GRID ====== */
+    .grid {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 25px;
+      width: 100%;
+      margin-top: 1rem;
+    }
+
+    /* ====== CARD ====== */
+    .card {
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      width: 80%;              /* large on PC */
+      max-width: 650px;        /* limit too large stretch */
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover { transform: scale(1.02); }
+
+    .card img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      background: #f3f4f6;
+    }
+
+    .card .meta {
+      padding: 1rem 1.2rem;
+      text-align: center;
+    }
+
+    .title {
+      font-weight: 600;
+      font-size: 1.3rem;
+      color: #3a2c23;
+      margin-bottom: 0.3rem;
+    }
+
+    .desc {
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .img-wrap {
+      position: relative;
+    }
+
+    .price-badge {
+      position: absolute;
+      right: 10px;
+      bottom: 10px;
+      padding: .4rem .7rem;
+      background: var(--accent);
+      color: #fff;
+      font-weight: bold;
+      border-radius: 999px;
+      font-size: .9rem;
+      box-shadow: var(--shadow);
+    }
+
+    /* ====== RESPONSIVE ====== */
+    @media (max-width: 768px) {
+      .menu-logo {
+        width: 130px;
+        height: 130px;
+      }
+
+      .card {
+        width: 95%;   /* almost full width on phone */
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <div class="navbar-wrap">
+    <nav class="navbar">
+      <a href="index.html" class="nav-brand">Oborri Shkodran</a>
+      <div class="cat-scroll">
+        <div class="cat-list">
+          <a href="#tengrohta">Të ngrohta</a>
+          <a href="#freskuese">Freskuese</a>
+          <a href="#birra">Birra</a>
+          <a href="#cocteil">Cocteil</a>
+          <a href="#alkolike">Alkolike</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <!-- HEADER -->
+  <!--<header class="menu-header" id="top">
+    <img class="menu-logo" src="logo.png" alt="Oborri Shkodran Logo">
+  </header>-->
+
+  <!-- CONTENT -->
+  <div class="container">
+    <section class="category" id="tengrohta">
+      <h2>Të ngrohta</h2>
+      <div class="grid">
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/TE NGROHTA/esspresso coffee.jpg" alt="KAFE / Espresso">
+            <span class="price-badge">80 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">KAFE / Espresso</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/TE NGROHTA/macchiato.jpg" alt="MAKIATO / Macchiato">
+            <span class="price-badge">90 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">MAKIATO / Macchiato</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/TE NGROHTA/american coffee.jpg" alt="AMERIKANE / Americano">
+            <span class="price-badge">140 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">AMERIKANE / Americano</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/TE NGROHTA/big macchiato coffee.jpg" alt="MAKIATO E MADHE / Large Macchiato">
+            <span class="price-badge">180 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">MAKIATO E MADHE / Large Macchiato</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/TE NGROHTA/corretto coffee.jpg" alt="CORRETO / Corretto">
+            <span class="price-badge">180 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">CORRETO / Corretto</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/TE NGROHTA/shakerato coffee.jpg" alt="SHEKERATO / Shakerato">
+            <span class="price-badge">250 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">SHEKERATO / Shakerato</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/TE NGROHTA/iced coffee with wood bg.jpg" alt="KAFE E FTOHTË / Iced Coffee">
+            <span class="price-badge">140 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">KAFE E FTOHTË / Iced Coffee</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/TE NGROHTA/latte macchiato.jpg" alt="LATE MAKIATO / Latte Macchiato">
+            <span class="price-badge">180 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">LATE MAKIATO / Latte Macchiato</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/TE NGROHTA/frappe coffee.jpg" alt="FRAPE / Frappe">
+            <span class="price-badge">200 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">FRAPE / Frappe</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/TE NGROHTA/cappuccino coffee.jpg" alt="KAPUÇINO / Cappuccino">
+            <span class="price-badge">150 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">KAPUÇINO / Cappuccino</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/TE NGROHTA/cacao drink.jpg" alt="KAKAO / Cocoa">
+            <span class="price-badge">150 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">KAKAO / Cocoa</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/TE NGROHTA/hot chocolate.jpg" alt="ÇOKOLLATË E NGROHTË / Hot Chocolate">
+            <span class="price-badge">150 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">ÇOKOLLATË E NGROHTË / Hot Chocolate</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/TE NGROHTA/cold cappuccino drink.jpg" alt="KAPUÇINO E FTOHTË / Iced Cappuccino">
+            <span class="price-badge">180 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">KAPUÇINO E FTOHTË / Iced Cappuccino</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/TE NGROHTA/iced cocoa drink.jpg" alt="KAKAO E FTOHTË / Iced Cocoa">
+            <span class="price-badge">180 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">KAKAO E FTOHTË / Iced Cocoa</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/TE NGROHTA/iced chocolate drink.jpg" alt="ÇOKOLLATË E FTOHTË / Iced Chocolate">
+            <span class="price-badge">180 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">ÇOKOLLATË E FTOHTË / Iced Chocolate</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/TE NGROHTA/tea.jpg" alt="ÇAJ / Tea">
+            <span class="price-badge">80 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">ÇAJ / Tea</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/TE NGROHTA/organic tea.jpg" alt="ÇAJ BIO / Organic Tea">
+            <span class="price-badge">150 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">ÇAJ BIO / Organic Tea</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- more sections -->
+    <section class="category" id="freskuese">
+      <h2>Freskuese</h2>
+      <div class="grid">
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/FRESKUESE/coca-cola.png" alt="COCA-COLA / Coca-Cola">
+            <span class="price-badge">180 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">COCA-COLA / Coca-Cola</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/FRESKUESE/fanta.png" alt="FANTA / Fanta">
+            <span class="price-badge">180 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">FANTA / Fanta</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/FRESKUESE/sprite.png" alt="SPRITE / Sprite">
+            <span class="price-badge">180 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">SPRITE / Sprite</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/FRESKUESE/soda limoni.png" alt="SODA LIMONI / Lemon Soda">
+            <span class="price-badge">200 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">SODA LIMONI / Lemon Soda</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/FRESKUESE/soda portokall.png" alt="SODA PORTOKALLI / Orange Soda">
+            <span class="price-badge">200 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">SODA PORTOKALLI / Orange Soda</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/FRESKUESE/caj i ftohte.png" alt="CAJ I FTOHTË / Iced Tea">
+            <span class="price-badge">200 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">CAJ I FTOHTË / Iced Tea</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/FRESKUESE/b52.png" alt="B52 / B52 Energy Drink">
+            <span class="price-badge">250 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">B52 / B52 Energy Drink</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/FRESKUESE/red bull.png" alt="RED BULL / Red Bull">
+            <span class="price-badge">350 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">RED BULL / Red Bull</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/FRESKUESE/uje natyral.png" alt="UJE NATYRAL / Natural Water">
+            <span class="price-badge">80 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">UJE NATYRAL / Natural Water</div>
+            <div class="desc">0.5 L</div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/FRESKUESE/uje me gaz glina.png" alt="UJE I GAZUAR / Sparkling Water">
+            <span class="price-badge">80 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">UJE I GAZUAR / Sparkling Water</div>
+            <div class="desc">0.5 L</div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/FRESKUESE/uje natyral tepelena.png" alt="UJE NATYRAL / Natural Water">
+            <span class="price-badge"> lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">UJE NATYRAL / Natural Water</div>
+            <div class="desc">0.75 L</div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/FRESKUESE/uje i gazuar tepelena.png" alt="UJE I GAZUAR / Sparkling Water">
+            <span class="price-badge"> lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">UJE I GAZUAR / Sparkling Water</div>
+            <div class="desc">0.75 L</div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/FRESKUESE/leng portokalli.png" alt="LENG PORTOKALLI BIO / Organic Orange Juice">
+            <span class="price-badge">250 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">LENG PORTOKALLI BIO / Organic Orange Juice</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/FRESKUESE/bravo.png" alt="BRAVO / Bravo Juice">
+            <span class="price-badge">200 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">BRAVO / Bravo Juice</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/FRESKUESE/bitter.png" alt="BITER / Bitter">
+            <span class="price-badge">100 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">BITER / Bitter</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/FRESKUESE/crodino.png" alt="CRODINO / Crodino">
+            <span class="price-badge">250 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">CRODINO / Crodino</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/FRESKUESE/tonic water.png" alt="UJE TONIK / Tonic Water">
+            <span class="price-badge">250 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">UJE TONIK / Tonic Water</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <div class="container">
+    <section class="category" id="birra">
+      <h2>Birra</h2>
+      <div class="grid">
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/BIRRA/birre korca.png" alt="BIRRE KORCA / Korça Beer">
+            <span class="price-badge">250 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">BIRRE KORCA / Korça Beer</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/BIRRA/birre heineken.png" alt="BIRRE HEINEKEN / Heineken Beer">
+            <span class="price-badge">300 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">BIRRE HEINEKEN / Heineken Beer</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/BIRRA/birre butweiser.png" alt="BIRRE BUTWEISER / Budweiser Beer">
+            <span class="price-badge">300 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">BIRRE BUTWEISER / Budweiser Beer</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/BIRRA/birre benediktiner.png" alt="BIRRE BENEDIKTINER / Benedikter Beer">
+            <span class="price-badge">450 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">BIRRE BENEDIKTINER / Benedikter Beer</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/BIRRA/birre corona.png" alt="BIRRE CORONA / Corona Beer">
+            <span class="price-badge">450 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">BIRRE CORONA / Corona Beer</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/BIRRA/krikel.jpg" alt="BIRRE KRIKEL 0.5 / Krikel Beer 0.5L">
+            <span class="price-badge">350 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">BIRRE KRIKEL 0.5 / Krikel Beer 0.5L</div>
+            <div class="desc">Butweiser</div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <div class="container">
+    <section class="category" id="cocteil">
+      <h2>Cocteil</h2>
+      <div class="grid">
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/COCTEIL/Mojito.jpg" alt="MOJITO / Mojito">
+            <span class="price-badge">600 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">MOJITO / Mojito</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/COCTEIL/Margarita.jpg" alt="MARGARITA / Margarita">
+            <span class="price-badge">600 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">MARGARITA / Margarita</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/COCTEIL/Negroni.jpg" alt="NEGRONI / Negroni">
+            <span class="price-badge">600 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">NEGRONI / Negroni</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/COCTEIL/AMF.jpg" alt="AMF / AMF">
+            <span class="price-badge">800 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">AMF / AMF</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/COCTEIL/Aperol Spritz.jpg" alt="APEROL SPRITZ / Aperol Spritz">
+            <span class="price-badge">400 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">APEROL SPRITZ / Aperol Spritz</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/COCTEIL/Vene ne Gote.jpg" alt="VENE NE GOTE / Wine in Glass">
+            <span class="price-badge">250 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">VENE NE GOTE / Wine in Glass</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <div class="container">
+    <section class="category" id="alkolike">
+      <h2>Alkolike</h2>
+      <div class="grid">
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/ALKOLIKE/raki.jpg" alt="RAKI / Raki">
+            <span class="price-badge">150 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">RAKI / Raki</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/ALKOLIKE/raki moskat.jpg" alt="RAKI MOSKAT / Muscat Raki">
+            <span class="price-badge">250 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">RAKI MOSKAT / Muscat Raki</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/ALKOLIKE/raki frutash.jpg" alt="RAKI FRUTASH / Fruit Raki">
+            <span class="price-badge">300 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">RAKI FRUTASH / Fruit Raki</div>
+            <div class="desc">Ftoi, Qershie, Pjeshke <br>Plum, Cherry, Peach</div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/ALKOLIKE/amaro montenegro.jpg" alt="AMARO MONTENEGRO / Amaro Montenegro">
+            <span class="price-badge">250 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">AMARO MONTENEGRO / Amaro Montenegro</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/ALKOLIKE/Jagermeister.jpg" alt="JAGERMEISTER / Jagermeister">
+            <span class="price-badge">250 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">JAGERMEISTER / Jagermeister</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/ALKOLIKE/disarono.jpg" alt="DISARONO / Disaronno">
+            <span class="price-badge">300 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">DISARONO / Disaronno</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/ALKOLIKE/johny red.jpg" alt="JOHNY RED / Johny Red">
+            <span class="price-badge">250 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">JOHNY RED / Johny Red</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/ALKOLIKE/Johny Black.jpg" alt="JOHNY BLACK / Johny Black">
+            <span class="price-badge">350 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">JOHNY BLACK / Johny Black</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/ALKOLIKE/Johny Blue.jpg" alt="JOHNY BLUE / Johny Blue">
+            <span class="price-badge">2500 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">JOHNY BLUE / Johny Blue</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/ALKOLIKE/jack daniels.jpg" alt="JACK DANIELS / Jack Daniels">
+            <span class="price-badge">350 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">JACK DANIELS / Jack Daniels</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/ALKOLIKE/J&B.jpg" alt="J&B / J&B">
+            <span class="price-badge">300 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">J&B / J&B</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/ALKOLIKE/chivas.jpg" alt="CHIVAS / Chivas">
+            <span class="price-badge">400 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">CHIVAS / Chivas</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/ALKOLIKE/vecchia.jpg" alt="VECHIA / Vecchia">
+            <span class="price-badge">250 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">VECHIA / Vecchia</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/ALKOLIKE/hennessy.jpg" alt="HENNESSY / Hennessy">
+            <span class="price-badge">500 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">HENNESY / Hennesy</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/ALKOLIKE/gin gordons.jpg" alt="GIN GORDON'S / Gin Gordon's">
+            <span class="price-badge">250 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">GIN GORDON'S / Gin Gordon's</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/ALKOLIKE/hendricks.jpg" alt="GIN HENDRICKS / Gin Hendricks">
+            <span class="price-badge">800 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">GIN HENDRICKS / Gin Hendricks</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/ALKOLIKE/gin tranquery.jpg" alt="GIN TRANQUERY / Gin Tranquery">
+            <span class="price-badge">350 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">GIN TRANQUERY / Gin Tranquery</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/ALKOLIKE/vodka smirnoff.jpg" alt="VODKA SMIRNOFF / Vodka Smirnoff">
+            <span class="price-badge">250 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">VODKA SMIRNOFF / Vodka Smirnoff</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/ALKOLIKE/absolut vodka.jpg" alt="VODKA ABSOLUT / Vodka Absolut">
+            <span class="price-badge">350 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">VODKA ABSOLUT / Vodka Absolut</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/ALKOLIKE/vodka grey goose.jpg" alt="VODKA GREY GOOSE / Vodka Grey Goose">
+            <span class="price-badge">700 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">VODKA GREY GOOSE / Vodka Grey Goose</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/ALKOLIKE/vodka belvedere.jpg" alt="VODKA BELVEDERE / Vodka Belvedere">
+            <span class="price-badge">700 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">VODKA BELVEDERE / Vodka Belvedere</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/ALKOLIKE/tequila.jpg" alt="TEQUILA / Tequila">
+            <span class="price-badge">250 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">TEQUILA / Tequila</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/ALKOLIKE/bacardi.jpg" alt="BACARDI / Bacardi">
+            <span class="price-badge">250 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">BACARDI / Bacardi</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/ALKOLIKE/martini.jpg" alt="MARTINI / Martini">
+            <span class="price-badge">250 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">MARTINI / Martini</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/ALKOLIKE/shots.jpg" alt="SHOTS / Shots">
+            <span class="price-badge">250 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">SHOTS / Shots</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/ALKOLIKE/konjak skenderbegu.jpg" alt="KONJAK SKENDERBEGU / Skenderbeu Cognac">
+            <span class="price-badge">200 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">KONJAK SKENDERBEGU / Skenderbeu Cognac</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/ALKOLIKE/baileys.jpg" alt="BAILEYS / Baileys">
+            <span class="price-badge">250 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">BAILEYS / Baileys</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/ALKOLIKE/limoncel.jpg" alt="LIMONCEL / Limoncel">
+            <span class="price-badge">200 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">LIMONCEL / Limoncel</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img-wrap">
+            <img src="foto/BAR/ALKOLIKE/fernet branca.jpg" alt="FERNET BRANCA / Fernet Branca">
+            <span class="price-badge">300 lek</span>
+          </div>
+          <div class="meta">
+            <div class="title">FERNET BRANCA / Fernet Branca</div>
+            <div class="desc"></div>
+          </div>
+        </article>
+
+
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // Highlight active section in navbar
+    const sections = document.querySelectorAll("section.category");
+    const navLinks = document.querySelectorAll(".cat-list a");
+
+    window.addEventListener("scroll", () => {
+      let current = "";
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 120;
+        if (scrollY >= sectionTop) current = section.getAttribute("id");
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === "#" + current) {
+          link.classList.add("active");
+        }
+      });
+    });
+  </script>
+</body>
+</html>
